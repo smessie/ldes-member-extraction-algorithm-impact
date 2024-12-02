@@ -9,7 +9,7 @@ for env_file in "$ENV_DIR_TELRAAM_REPLICATION"/*.env; do
 
     out_file="$OUT_DIR_TELRAAM_REPLICATION/${base_name}.json"
 
-    NODE_OPTIONS=--max-old-space-size=20480 node runner "$env_file" "$out_file" "$SERVER_HOSTNAME"
+    NODE_OPTIONS=--max-old-space-size=20480 npx ldes-evaluation-runner-orchestrator "$env_file" "$out_file" "$SERVER_HOSTNAME"
 
     docker compose down
 done

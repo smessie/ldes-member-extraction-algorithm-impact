@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Replication of Telraam benchmark
-ENV_DIR_TELRAAM_REPLICATION="/users/iesmessa/ldes-member-extraction-algorithm-impact/env/telraam"
+ENV_DIR_TELRAAM_REPLICATION="/users/iesmessa/ldes-member-extraction-algorithm-impact/config/telraam"
 OUT_DIR_TELRAAM_REPLICATION="/users/iesmessa/ldes-member-extraction-algorithm-impact/out/telraam"
 
 for env_file in "$ENV_DIR_TELRAAM_REPLICATION"/*.env; do

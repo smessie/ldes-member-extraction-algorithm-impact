@@ -14,3 +14,32 @@ for env_file in "$ENV_DIR_TELRAAM_REPLICATION"/*.env; do
     docker compose down
 done
 
+
+# Replication of DCAT-AP Feed Sweden benchmark
+ENV_DIR_DCAT_SWEDEN_REPLICATION="/users/iesmessa/ldes-member-extraction-algorithm-impact/config/dcat-sweden"
+OUT_DIR_DCAT_SWEDEN_REPLICATION="/users/iesmessa/ldes-member-extraction-algorithm-impact/out/dcat-sweden"
+
+for env_file in "$ENV_DIR_DCAT_SWEDEN_REPLICATION"/*.env; do
+    base_name=$(basename "$env_file" .env)
+
+    out_file="$OUT_DIR_DCAT_SWEDEN_REPLICATION/${base_name}.json"
+
+    NODE_OPTIONS=--max-old-space-size=20480 npx ldes-evaluation-runner-orchestrator "$env_file" "$out_file" "$SERVER_HOSTNAME"
+
+    docker compose down
+done
+
+
+# Replication of Marine Regions benchmark
+ENV_DIR_MARINE_REGIONS_REPLICATION="/users/iesmessa/ldes-member-extraction-algorithm-impact/config/marine-regions"
+OUT_DIR_MARINE_REGIONS_REPLICATION="/users/iesmessa/ldes-member-extraction-algorithm-impact/out/marine-regions"
+
+for env_file in "$ENV_DIR_MARINE_REGIONS_REPLICATION"/*.env; do
+    base_name=$(basename "$env_file" .env)
+
+    out_file="$OUT_DIR_MARINE_REGIONS_REPLICATION/${base_name}.json"
+
+    NODE_OPTIONS=--max-old-space-size=20480 npx ldes-evaluation-runner-orchestrator "$env_file" "$out_file" "$SERVER_HOSTNAME"
+
+    docker compose down
+done

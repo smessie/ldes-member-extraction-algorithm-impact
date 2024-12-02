@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Replication of Telraam benchmark
+ENV_DIR_TELRAAM_REPLICATION="/users/iesmessa/ldes-member-extraction-algorithm-impact/env/telraam"
+OUT_DIR_TELRAAM_REPLICATION="/users/iesmessa/ldes-member-extraction-algorithm-impact/out/telraam"
+
+for env_file in "$ENV_DIR_TELRAAM_REPLICATION"/*.env; do
+    base_name=$(basename "$env_file" .env)
+
+    out_file="$OUT_DIR_TELRAAM_REPLICATION/${base_name}.json"
+
+    NODE_OPTIONS=--max-old-space-size=20480 node runner "$env_file" "$out_file" "$SERVER_HOSTNAME"
+
+    docker compose down
+done
+

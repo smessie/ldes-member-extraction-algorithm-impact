@@ -17,20 +17,27 @@ const data = RdfStore.createDefault();
 await new Promise((resolve, reject) => {
    data.import(resp.data).on("end", resolve).on("error", reject);
 });
-const fetchedPage = {url: resp.url, data};
 
+const shapesGraphStore = RdfStore.createDefault();
 if (cbdSpecifyShape) {
    const shapeIds = data.getQuads(null, TREE.terms.shape).map(quad => quad.object);
    if (shapeIds.length !== 1) {
       console.error(`Expected to find exactly one shapeId, but found ${shapeIds.length}!`);
    } else {
       shapeId = shapeIds[0];
+
+      if (shapeId.termType === 'NamedNode') {
+         const respShape = await rdfDereferencer.dereference(shapeId.value);
+         await new Promise((resolve, reject) => {
+            shapesGraphStore.import(respShape.data).on("end", resolve).on("error", reject);
+         });
+      }
    }
 }
 
 const members = data.getQuads(null, TREE.terms.member, null).map(quad => quad.object);
 
-const extractor = new CBDShapeExtractor(data, undefined, {
+const extractor = new CBDShapeExtractor((cbdSpecifyShape && shapeId?.termType === 'NamedNode') ? shapesGraphStore : data, undefined, {
    cbdDefaultGraph: cbdDefaultGraph,
 });
 

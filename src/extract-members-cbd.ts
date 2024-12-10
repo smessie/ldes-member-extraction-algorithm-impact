@@ -11,6 +11,8 @@ const cbdDefaultGraph = process.argv[4] === "true";
 
 let shapeId = undefined;
 
+const hrStart = process.hrtime();
+
 // Fetch page
 const resp = await rdfDereferencer.dereference(ldesPage);
 const data = RdfStore.createDefault();
@@ -43,11 +45,14 @@ const extractor = new CBDShapeExtractor((cbdSpecifyShape && shapeId?.termType ==
 
 let count = 0;
 let countQuads = 0;
+let memberArrivalTimes: number[] = [];  // Milliseconds since start
 
 const promises = [];
 for (const member of members) {
    const promise = extractor.extract(data, member, shapeId).then(quads => {
       console.log(member.value);
+      const hrMember = process.hrtime(hrStart);
+      memberArrivalTimes.push(Math.round(hrMember[0] * 1000 + hrMember[1] / 1000000));
       count++;
       countQuads += quads.length;
    });
@@ -59,6 +64,7 @@ if (process.send) {
    process.send({
       resultMembers: count,
       resultQuads: countQuads,
+      memberArrivalTimes,
    });
 } else {
    console.log(`No process.send found. Result: ${count} elements with ${countQuads} quads`);

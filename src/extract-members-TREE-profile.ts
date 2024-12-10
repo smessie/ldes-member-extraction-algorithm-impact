@@ -5,7 +5,9 @@ import {TREE} from "@treecg/types";
 
 // ASSUME TREE PROFILE
 
-const ldesPage = process.argv[2] || 'http://127.0.0.1:3000/ldes/default'
+const ldesPage = process.argv[2] || 'http://127.0.0.1:3000/ldes/default';
+
+const hrStart = process.hrtime();
 
 const resp = await rdfDereferencer.dereference(ldesPage);
 
@@ -16,10 +18,13 @@ let memberQuads: Quad[] = [];
 
 let count = 0;
 let countQuads = 0;
+let memberArrivalTimes: number[] = [];  // Milliseconds since start
 
 function handleFullMember() {
    if (memberId) {
       console.log(memberId.value);
+      const hrMember = process.hrtime(hrStart);
+      memberArrivalTimes.push(Math.round(hrMember[0] * 1000 + hrMember[1] / 1000000));
       count++;
       countQuads += memberQuads.length;
    }
@@ -53,6 +58,7 @@ if (process.send) {
    process.send({
       resultMembers: count,
       resultQuads: countQuads,
+      memberArrivalTimes,
    });
 } else {
    console.log(`No process.send found. Result: ${count} elements with ${countQuads} quads`);

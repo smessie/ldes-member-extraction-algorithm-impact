@@ -59,7 +59,6 @@ if (process.send) {
    process.send({
       resultMembers: count,
       resultQuads: countQuads,
-      // TODO: latency: totalLatency / count,
    });
 } else {
    console.log(`No process.send found. Result: ${count} elements with ${countQuads} quads`);

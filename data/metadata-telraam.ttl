@@ -10,10 +10,75 @@
 @prefix void:   <http://rdfs.org/ns/void#> .
 @prefix ldes:   <https://w3id.org/ldes#>.
 @prefix dct:    <http://purl.org/dc/terms/>.
+@prefix sosa:                   <http://www.w3.org/ns/sosa/> .
+@prefix verkeersmetingen:       <https://data.vlaanderen.be/ns/verkeersmetingen#> .
+@prefix time:                   <http://www.w3.org/2006/time#> .
+@prefix schema: <https://schema.org/> .
+@prefix MeasureTypes:           <http://def.isotc211.org/iso19103/2015/MeasureTypes#> .
+@prefix tree:                   <https://w3id.org/tree#> .
+
 
 ex:somePlan
     a            p-plan:Plan ;
     rdfs:comment "A plan to publish an LDES feed to Benchmark" .
+
+<#TelraamShape> a sh:NodeShape ;
+                sh:targetClass <https://implementatie.data.vlaanderen.be/ns/vsds-verkeersmetingen#Verkeerstelling> , verkeersmetingen:Verkeersmeting;
+                sh:property [
+                    sh:path  <http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.phenomenonTime> ;
+                    sh:node <#TemporalEntityShape>
+                ],[
+                    sh:path <http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.result> ;
+                    sh:node <#SpeedShape>
+                ],[
+                    sh:path dct:isVersionOf ;
+                    sh:minCount 1
+                ],[
+                    sh:path prov:generatedAtTime ;
+                    sh:minCount 1
+                ],[
+                    sh:path sosa:madeBySensor ;
+                    sh:node <#SensorShape>
+                ],[
+                    sh:path         verkeersmetingen:geobserveerdObject ;
+                    sh:node <#ObjectShape>
+                ],[
+                    sh:path <https://implementatie.data.vlaanderen.be/ns/vsds-verkeersmetingen#Verkeerssnelheidsmeting.geobserveerdKenmerk> ;
+                ].
+
+<#TemporalEntityShape> a sh:NodeShape ;
+                       sh:class  time:TemporalEntity;
+                       sh:property [
+                           sh:path time:hasBeginning;
+                           sh:minCount 1
+                       ],[
+                           sh:path time:hasXSDDuration;
+                           sh:minCount 1
+                       ] .
+
+<#SpeedShape>  a sh:NodeShape ;
+               sh:class  MeasureTypes:Speed;
+               sh:property [
+                   sh:path schema:unitCode;
+                   sh:minCount 1
+               ],[
+                   sh:path schema:value;
+                   sh:minCount 1
+               ] .
+
+<#SensorShape> a sh:NodeShape ;
+               sh:class  sosa:Sensor;
+               sh:property [
+                   sh:path dct:type;
+                   sh:minCount 1
+               ] .
+
+<#ObjectShape> a sh:NodeShape ;
+               sh:property [
+                   sh:path <http://def.isotc211.org/iso19156/2011/SamplingPoint#SF_SamplingPoint.shape>;
+               ],[
+                   sh:path verkeersmetingen:bemonsterdObject;
+               ] .
 
 ex:BenchmarkStream
     a                     sds:Stream ;
@@ -25,4 +90,5 @@ ex:BenchmarkStream
                             dcat:publisher     <http://solid.smessie.com/profile/card#me> ;
                             ldes:timestampPath prov:generatedAtTime;
                             ldes:versionOfPath dct:isVersionOf;
-                            dcat:identifier    <http://${SERVER_HOSTNAME}:3000/ldes> ] .
+                            dcat:identifier    <http://${SERVER_HOSTNAME}:3000/ldes> ] ;
+                            tree:shape         <#TelraamShape> .

@@ -19,8 +19,6 @@ let countQuads = 0;
 
 function handleFullMember() {
    if (memberId) {
-      // Previous member ended, emit quads of that member.
-      // TODO: correctly emit.
       console.log(memberId.value);
       count++;
       countQuads += memberQuads.length;
@@ -55,7 +53,6 @@ if (process.send) {
    process.send({
       resultMembers: count,
       resultQuads: countQuads,
-      // TODO: latency: totalLatency / count,
    });
 } else {
    console.log(`No process.send found. Result: ${count} elements with ${countQuads} quads`);

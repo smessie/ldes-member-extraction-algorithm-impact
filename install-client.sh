@@ -8,7 +8,8 @@ export NVM_DIR="$HOME/.nvm"
 
 nvm install 22
 
-cd client
 npm install
-npm run build
-cd ..
+
+# Install screen
+sudo apt-get update
+sudo apt-get -y install screen

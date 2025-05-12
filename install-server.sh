@@ -10,15 +10,8 @@ export NVM_DIR="$HOME/.nvm"
 
 nvm install 22
 
-cd client
 npm install
-npm run build
-cd ..
 
-cd runner
-npm install
-npm run build
-cd ..
 
 # Add Docker's official GPG key:
 sudo apt-get update
@@ -37,3 +30,11 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 sudo usermod -aG docker $USER
+
+# Install screen
+sudo apt-get update
+sudo apt-get -y install screen
+
+# Get the local IPv4 address of the server
+LOCAL_IP=$(hostname -I | awk '{print $1}')
+echo "Server IP: $LOCAL_IP"

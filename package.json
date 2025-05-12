@@ -16,15 +16,15 @@
   "license": "MIT",
   "dependencies": {
     "@rdfjs/types": "^1.1.2",
-    "extract-cbd-shape": "^0.1.8",
-    "ldes-client": "^0.0.15",
+    "extract-cbd-shape": "^0.1.12",
+    "ldes-client": "^0.1.7",
     "rdf-dereference": "^4.0.0",
-    "rdf-stores": "^1.0.0"
+    "rdf-stores": "^2.1.1"
   },
   "devDependencies": {
     "@treecg/types": "^0.4.6",
-    "ldes-evaluation-runner-client": "^1.0.4",
-    "ldes-evaluation-runner-orchestrator": "^1.0.9",
+    "ldes-evaluation-runner-client": "^1.1.0",
+    "ldes-evaluation-runner-orchestrator": "^1.1.1",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.10",
     "typescript": "^5.5.4"

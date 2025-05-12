@@ -24,7 +24,7 @@
   "devDependencies": {
     "@treecg/types": "^0.4.6",
     "ldes-evaluation-runner-client": "^1.1.0",
-    "ldes-evaluation-runner-orchestrator": "^1.1.1",
+    "ldes-evaluation-runner-orchestrator": "^1.1.2",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.10",
     "typescript": "^5.5.4"

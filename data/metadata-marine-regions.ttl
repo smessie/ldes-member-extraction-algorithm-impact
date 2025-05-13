@@ -47,7 +47,7 @@ ex:BenchmarkStream
                                 ], [ sh:path skos:note ], [ sh:path skos:historyNote ], [
                                   sh:datatype gsp:wktLiteral ;
                                   sh:maxCount 1 ;
-                                  sh:minCount 1 ;
+                                  sh:minCount 0 ;
                                   sh:path dcat:centroid
                                 ], [
                                   sh:datatype gsp:wktLiteral ;
@@ -85,7 +85,6 @@ ex:BenchmarkStream
                                   sh:minCount 0 ;
                                   sh:path skos:altLabel
                                 ], [
-                                  sh:class mr:MRGeoObject ;
                                   sh:minCount 0 ;
                                   sh:nodeKind sh:IRI ;
                                   sh:path mr:isRelatedTo

@@ -49,7 +49,7 @@ let memberArrivalTimes: number[] = [];  // Milliseconds since start
 
 const promises = [];
 for (const member of members) {
-   const promise = extractor.extract(data, member, shapeId).then(quads => {
+   const promise = extractor.extract(data, member, shapeId, members).then(quads => {
       console.log(member.value);
       const hrMember = process.hrtime(hrStart);
       memberArrivalTimes.push(Math.round(hrMember[0] * 1000 + hrMember[1] / 1000000));

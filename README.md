@@ -1,7 +1,7 @@
-# ldes-member-extraction-algorithm-impact
+# member-extraction-algorithm-evaluation
 
 This repository contains the code to evaluate the impact of the member extraction algorithm.
-It compares the extraction of members between the extract-cbd-shape library with and without the shape, and the baseline extraction algorithm using a profile.
+It compares the extraction of members between the extract-cbd-shape library, and the baseline extraction algorithm using a profile (optimum).
 
 ## Installation
 

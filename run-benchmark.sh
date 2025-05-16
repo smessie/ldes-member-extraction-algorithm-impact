@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Replication of Telraam benchmark
-ENV_DIR_TELRAAM_REPLICATION="/users/iesmessa/ldes-member-extraction-algorithm-impact/config/telraam"
-OUT_DIR_TELRAAM_REPLICATION="/users/iesmessa/ldes-member-extraction-algorithm-impact/out/telraam"
+ENV_DIR_TELRAAM_REPLICATION="/users/iesmessa/member-extraction-algorithm-evaluation/config/telraam"
+OUT_DIR_TELRAAM_REPLICATION="/users/iesmessa/member-extraction-algorithm-evaluation/out/telraam"
 
 for env_file in "$ENV_DIR_TELRAAM_REPLICATION"/*.env; do
     base_name=$(basename "$env_file" .env)
@@ -16,8 +16,8 @@ done
 
 
 # Replication of DCAT-AP Feed Sweden benchmark
-ENV_DIR_DCAT_SWEDEN_REPLICATION="/users/iesmessa/ldes-member-extraction-algorithm-impact/config/dcat-sweden"
-OUT_DIR_DCAT_SWEDEN_REPLICATION="/users/iesmessa/ldes-member-extraction-algorithm-impact/out/dcat-sweden"
+ENV_DIR_DCAT_SWEDEN_REPLICATION="/users/iesmessa/member-extraction-algorithm-evaluation/config/dcat-sweden"
+OUT_DIR_DCAT_SWEDEN_REPLICATION="/users/iesmessa/member-extraction-algorithm-evaluation/out/dcat-sweden"
 
 for env_file in "$ENV_DIR_DCAT_SWEDEN_REPLICATION"/*.env; do
     base_name=$(basename "$env_file" .env)
@@ -31,8 +31,8 @@ done
 
 
 # Replication of Marine Regions benchmark
-ENV_DIR_MARINE_REGIONS_REPLICATION="/users/iesmessa/ldes-member-extraction-algorithm-impact/config/marine-regions"
-OUT_DIR_MARINE_REGIONS_REPLICATION="/users/iesmessa/ldes-member-extraction-algorithm-impact/out/marine-regions"
+ENV_DIR_MARINE_REGIONS_REPLICATION="/users/iesmessa/member-extraction-algorithm-evaluation/config/marine-regions"
+OUT_DIR_MARINE_REGIONS_REPLICATION="/users/iesmessa/member-extraction-algorithm-evaluation/out/marine-regions"
 
 for env_file in "$ENV_DIR_MARINE_REGIONS_REPLICATION"/*.env; do
     base_name=$(basename "$env_file" .env)

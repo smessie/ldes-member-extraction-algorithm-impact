@@ -1,5 +1,5 @@
 {
-  "name": "ldes-member-extraction-algorithm-impact",
+  "name": "member-extraction-algorithm-evaluation",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -10,7 +10,7 @@
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/smessie/ldes-member-extraction-algorithm-impact"
+    "url": "https://github.com/smessie/member-extraction-algorithm-evaluation"
   },
   "author": "Ieben Smessaert",
   "license": "MIT",
